@@ -127,6 +127,8 @@ sympy-plots-for-*.tex/
 
 auto/
 *.mx1
+*.xdv
+_*.tex
 
 # Matlab temp files
 *.autosave

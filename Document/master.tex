@@ -4,7 +4,8 @@
 \setcounter{secnumdepth}{3} % 层次为3以上的标题能够生成序号
 
 %% 宏包
-\usepackage{amsmath} % AMS数学宏包
+\usepackage{amsmath} % AMS 数学宏包
+\usepackage{bm} % 数学粗体宏包
 \usepackage{breqn} % 长公式换行宏包
 \usepackage{fancyhdr} % 设置页眉页脚宏包
 \usepackage{geometry} % 设置页边距宏包
@@ -22,8 +23,6 @@
 \renewcommand{\headrulewidth}{0pt} % 去掉页眉的横线
 % 页边距设置
 \geometry{top = 2.54cm, bottom = 2.54cm, left = 3.18cm, right = 3.18cm}
-% 章节样式设置
-%\CTEXsetup[name={第,章},number={\arabic{chapter}}]{chapter}
 \ctexset{
   section/format = \Large\bfseries\raggedright,
   subsection/format = \large\bfseries\raggedright
@@ -81,6 +80,16 @@
 
 \chapter{阻抗分析综述}
 
+阻抗分析的经典文章是Sun Jian 发表在 IEEE Trans. Power Electronics 上的
+Impedance-based stability criterion for grid-connected inverters \cite{sun2011}。
+这篇文章引言部分的主要内容如下：
+
+1.本文提出了一种利用逆变器输出阻抗和电网阻抗判断系统稳定的判据。
+
+2.该判据是已有电压源系统判据的推广，适用于电流源系统。
+
+3.以单相（光伏）逆变器为算例说明本文所提出判据的正确性。 
+
 \chapter{\textit{dq}轴阻抗}
 
 \chapter{正负序阻抗}
@@ -90,7 +99,7 @@
 
 \section{三相变流器并网系统的广义阻抗及稳定判据}
 
-本文详见\cite{xin2017}。
+本文信息详见参考文献\cite{xin2017}。
 
 \subsection{1.1小节动态模型阻抗的推导}
 
@@ -133,6 +142,20 @@ I_0\sin\theta_I U \Delta \theta_{\mathrm{U}} + (1-G_{\mathrm{FF}}(s))\Delta U & 
 \end{equation}
 
 将原文中的(A8)-(A10)代入以上两式，即可得(A13)下面的四个阻抗表达式。
+
+\subsection{1.3小节和附录~B~电网模型阻抗推导}
+注意文中的$xy$坐标与潮流计算中的$xy$直角坐标系不同，是以系统额定角速度$\omega_0$
+旋转的同步坐标系，因此附录~B~在列写电感和电容的动态方程时，会出现耦合项。
+
+1.3小节中的式(14)未详细说明，现补充如下：节点1为逆变器 PCC 点，即图1中$U$所在
+的节点，节点2为线路电感和电容之间的中间节点。本式在推导时，分别对节点1和节点2列
+写方程，再应用大地和无穷大电源$\Delta U = 0$的条件，同时注意到节点2为内部节点，
+电流始终为0（基尔霍夫第一定律），即可得到式(14)。
+
+对于算例中讨论的只有线路电感的系统，式(14)可直接写为：
+\begin{equation}
+  \Delta \bm{I}_1 = \bm{Y}_{(1,1)} \Delta \bm{U}_1
+\end{equation}
 
 \bibliographystyle{thubib}
 \bibliography{refs}
