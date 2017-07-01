@@ -8,12 +8,12 @@
 本项目的技术文档，在 Mac OS Sierra(10.12.5) + TeXLive 2017 下利用 XeLaTeX 编译即可，注意需要 Adobe 的四套字体（宋体、仿宋、黑体、楷体），详见 [GitHub Font Repo](https://github.com/dolbydu/font/tree/master/unicode).
 
 ## Model
-本项目的模型文件，环境为 MATLAB 2015b。
+本项目的模型文件，环境为 MATLAB 2016b。
 - 各文件说明（前面均为作者姓+年份+期刊+期号）：
   - *.slx：模型
   - *_m.m：参数
   - *_sim.m：仿真脚本
 
 相关问题：
-- 编码：由于 Mac 下 MATLAB 使用 UTF8 编码，而 Windows 下为 GB2312 编码，为避免出现乱码问题，程序和注释全部为英文。
+- 编码：系统语言为简体中文时， MATLAB 采用 GB2312 编码，为避免出现乱码问题，程序和注释全部为英文。
 - Simulink 模型：slx 文件，由于模型 slx 文件为二进制文件，目前不接受 Pull Request 修改模型，可以开 Issue 讨论。

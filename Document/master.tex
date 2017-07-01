@@ -14,6 +14,7 @@
 \usepackage[listings,breakable]{tcolorbox} % 彩色盒子宏包 代码宏包
 \usepackage{enumitem} % 枚举设置宏包
 \usepackage{tikz} % 画图宏包
+\usepackage{booktabs} % 三线表宏包
 
 % 宏包设置
 % 页眉页脚样式
@@ -92,8 +93,96 @@ Impedance-based stability criterion for grid-connected inverters \cite{sun2011}�
 
 \chapter{\textit{dq}轴阻抗}
 
+\section{Wang 2017 TPEL}
+
+本文信息详见参考文献\cite{wang2017}。
+
+\subsection{系统参数}
+
+
 \chapter{正负序阻抗}
 
+\section{Rygg 2016}
+
+\subsection{\textit{dq}轴与正负序相量}
+
+$dq$ 轴相量定义如下（Park 变换）：
+\begin{equation}
+  \label{eq:dq-transform}
+  \begin{bmatrix}
+    V_d \\ V_q
+  \end{bmatrix}
+  = \frac{2}{3}
+  \begin{bmatrix}
+    \cos \theta & \cos \left( \theta-\frac{2\pi}{3} \right) & \cos \left( \theta+\frac{2\pi}{3} \right) \\
+    -\sin \theta & -\sin \left( \theta-\frac{2\pi}{3} \right) & -\sin \left( \theta+\frac{2\pi}{3} \right)
+  \end{bmatrix}
+  \times
+  \begin{bmatrix}
+    V_a \\ V_b \\ V_c
+  \end{bmatrix}
+\end{equation}
+
+正负序相量定义如下：
+\begin{equation}
+  \label{eq:np-transform}
+  \begin{bmatrix}
+    V_{\mathrm{p}} \\ V_{\mathrm{n}}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    1 & a & a^2 \\
+    1 & a^2 & a
+  \end{bmatrix}
+  \begin{bmatrix}
+    V_a \\ V_b \\ V_c
+  \end{bmatrix}, \quad a = \mathrm{e}^{\mathrm{j}(2/3\pi)}
+\end{equation}
+
+$dq$轴相量与正负序相量的关系如下：
+
+(1)$dq$轴 $\rightarrow$ 正负序：
+\begin{eqnarray}
+  \label{eq:dq-np}
+  \begin{bmatrix}
+    V_{\mathrm{p}} \\ V_{\mathrm{n}} 
+  \end{bmatrix} = \frac{1}{\sqrt{6}}
+  \begin{bmatrix}
+    V_{\mathrm{d}} + \mathrm{j}V_{\mathrm{q}} \\ 0
+  \end{bmatrix},\quad \omega_{\mathrm{p}} = \omega_{\mathrm{dq}} + \omega_1 \\
+  \begin{bmatrix}
+    V_{\mathrm{p}} \\ V_{\mathrm{n}} 
+  \end{bmatrix} = \frac{1}{\sqrt{6}}
+  \begin{bmatrix}
+    0 \\ V_{\mathrm{d}} - \mathrm{j}V_{\mathrm{q}}
+  \end{bmatrix},\quad \omega_{\mathrm{n}} = \omega_{\mathrm{dq}} - \omega_1
+\end{eqnarray}
+
+(2)正负序 $\rightarrow$ $dq$轴：
+
+\begin{eqnarray}
+  \label{eq:np-dq}
+  \begin{bmatrix}
+    V_{\mathrm{d}} \\ V_{\mathrm{q}} 
+  \end{bmatrix} & = & \sqrt{6}  V_{\mathrm{p}}
+  \begin{bmatrix}
+    1 \\ -\mathrm{j}
+  \end{bmatrix}, \qquad \omega_{\mathrm{dq}} = \omega_{\mathrm{p}} -
+    \omega_1 \\
+  \begin{bmatrix}
+    V_{\mathrm{d}} \\ V_{\mathrm{q}} 
+  \end{bmatrix} & = & \sqrt{6}  V_{\mathrm{n}}
+  \begin{bmatrix}
+    1 \\ \mathrm{j}
+  \end{bmatrix}, \qquad \omega_{\mathrm{dq}} = \omega_{\mathrm{n}} +
+    \omega_1
+\end{eqnarray}
+
+传统正负序阻抗定义：
+
+\begin{eqnarray}
+  Z_{\mathrm{p}} = \frac{V_{\mathrm{p}}}{I_{\mathrm{p}}} \\
+  Z_{\mathrm{n}} = \frac{V_{\mathrm{n}}}{I_{\mathrm{n}}}
+\end{eqnarray}
 
 \chapter{极坐标阻抗}
 
@@ -156,6 +245,65 @@ I_0\sin\theta_I U \Delta \theta_{\mathrm{U}} + (1-G_{\mathrm{FF}}(s))\Delta U & 
 \begin{equation}
   \Delta \bm{I}_1 = \bm{Y}_{(1,1)} \Delta \bm{U}_1
 \end{equation}
+
+\subsection{第2节阻抗判据推导}
+
+式(29)的2种情况讨论中，情况(1)的推导部分具体如下：
+
+\begin{equation}
+  \mathrm{det} \left( \frac{Y_{\mathrm{g4}}}{2}
+    \begin{bmatrix}
+      1 & -1 \\
+      -1 & 1
+    \end{bmatrix} +
+    \begin{bmatrix}
+      Y_{+} & 0 \\
+      0 & Y_{-}
+    \end{bmatrix}
+  \right) = 0
+\end{equation}
+
+上式可化为：
+
+\begin{equation}
+  \mathrm{det} 
+    \begin{bmatrix}
+      \frac{Y_{\mathrm{g4}}}{2}+Y_{+} & -\frac{Y_{\mathrm{g4}}}{2} \\ 
+      -\frac{Y_{\mathrm{g4}}}{2} & \frac{Y_{\mathrm{g4}}}{2}+Y_{-}
+    \end{bmatrix} = 0
+\end{equation}
+
+直接计算上式的行列式，可得：
+
+\begin{equation}
+  \frac{Y_{\mathrm{g4}}}{2} \left( Y_{+}+Y_{-} \right) = -Y_{+}Y_{-}
+\end{equation}
+
+即：
+
+\begin{equation}
+  \mathrm{det}\left( \frac{Y_{\mathrm{g4}}}{2} \right) \mathrm{det}\left( Y_{+}+Y_{-} \right)
+  = - \mathrm{det}\left( Y_{+}+Y_{-} \right)
+\end{equation}
+
+\chapter*{附录}
+
+本附录对本文档中的所有文献进行汇总。
+
+\begin{table}[htbp]
+  \centering
+  %\vspace{1em}
+  \begin{tabular}{ccccc}
+    \toprule
+    文章序号 & 作者 & 期刊/会议 & 年份 & 阻抗技术路线 \\
+    \midrule
+    \cite{sun2011} & Jian Sun & TPEL & 2011 & 正负序 \\
+    \cite{xin2017} & 辛焕海 & 中国电机工程学报 & 2017 & 极坐标 \\
+    \cite{rygg2016} & Atle Rygg & JESTPE & 2016 & 正负序/$dq$轴 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 
 \bibliographystyle{thubib}
 \bibliography{refs}
