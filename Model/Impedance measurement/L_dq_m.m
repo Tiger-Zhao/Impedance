@@ -190,14 +190,14 @@ legend({'$Z_{qd} \, \textrm{measure}$', '$Z_{qd} \, \textrm{model}$'}, 'Interpre
 set(gca, 'FontSize', 18);
 
 subplot(4,2,6);
-semilogx(f_series, Zqd_m_mag, f_series, Zqd_r_mag, 'LineWidth', 3);
+semilogx(f_series, Zqq_m_mag, f_series, Zqq_r_mag, 'LineWidth', 3);
 xlabel('$f/{\textrm {Hz}}$', 'Interpreter', 'LaTeX');
 ylabel('$\textrm{Magnitude}/\textrm{dB}$', 'Interpreter', 'LaTeX');
 legend({'$Z_{qq} \, \textrm{measure}$', '$Z_{qq} \, \textrm{model}$'}, 'Interpreter', 'LaTeX');
 set(gca, 'FontSize', 18);
 
 subplot(4,2,7);
-semilogx(f_series, Zqq_m_angle, f_series, Zqq_r_angle, 'LineWidth', 3);
+semilogx(f_series, Zqd_m_angle, f_series, Zqd_r_angle, 'LineWidth', 3);
 xlabel('$f/{\textrm {Hz}}$', 'Interpreter', 'LaTeX');
 ylabel('$\textrm{Phase}/\textrm{deg}$', 'Interpreter', 'LaTeX');
 legend({'$Z_{qd} \, \textrm{measure}$', '$Z_{qd} \, \textrm{model}$'}, 'Interpreter', 'LaTeX');
